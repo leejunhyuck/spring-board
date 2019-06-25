@@ -20,9 +20,13 @@ SELECT * from tbl_board where bno=#{bno}
 
 </select>
 
-<select id="" resultType="BoardVO">
+<select id="selectPage" resultType="BoardVO">
 
-SELECT * from tbl_board where bno=#{bno}
+select *
+from tbl_board
+where bno > 0
+order by bno desc
+limit #{skip}, #{amount};
 
 </select>
 

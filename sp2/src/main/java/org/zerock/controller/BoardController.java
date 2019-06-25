@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -46,13 +48,28 @@ public class BoardController {
 	}
 	
 	
+//	@GetMapping("/list")
+//	public void listAll(Model model) {
+//		
+//		model.addAttribute("list",service.listAll());
+//		
+//		
+//	}
+	
+	
 	@GetMapping("/list")
-	public void listAll(Model model) {
+	public void listPage(Criteria cri,Model model) {
 		
-		model.addAttribute("list",service.listAll());
+		int totalCount = 201;
+		
+		PageMaker pm  = new PageMaker(cri,totalCount);
+		
+		model.addAttribute("pm",pm);
+		model.addAttribute("list",service.getList(cri));
 		
 		
 	}
+	
 	
 	@GetMapping("/register")
 	public void register() {

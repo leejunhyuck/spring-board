@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
-import org.zerock.mapper.BoardMapper;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 
 import lombok.extern.log4j.Log4j;
 
@@ -53,6 +54,24 @@ public class BoardMapperTests {
 		
 	}
 	
+	@Test
+	public void testPaging() {
+		
+		Criteria cri = new Criteria();
+		
+		mapper.selectPage(cri).forEach( vo -> log.info(vo)); {
+			
+		}
+		
+	}
 	
+	@Test
+	public void testPageMaker() {
+		Criteria cri = new Criteria();
+		
+		PageMaker pm = new PageMaker(cri,97);
+		
+		log.info(pm);
+	}
 	
 }
