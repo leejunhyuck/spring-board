@@ -32,7 +32,7 @@
 			   <c:forEach items="${list}" var="vo">
 			   <tr>
 			     <td><c:out value="${vo.bno}"/></td>
-			     <td><a href='/board/read'><c:out value="${vo.title}"/></a></td>
+			     <td><a href='${pm.getLink("/board/read", pm.current)}&bno=${vo.bno}'><c:out value="${vo.title}"/></a></td>
 			     <td><c:out value="${vo.writer}"/></td>
 			     <td><c:out value="${vo.regdate}"/></td>
 			   </tr>

@@ -42,7 +42,7 @@
                 <hr>
         
               
-           		<a href="/board/list" class="btn btn-secondary">
+           		<a href="/board/list${cri.getLink() }" class="btn btn-secondary">
                   Go to List
                 </a>
                 </div>
