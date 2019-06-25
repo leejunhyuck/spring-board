@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.zerock.service.HelloService;
@@ -22,6 +23,13 @@ public class HomeController {
 	
 	@Autowired
 	private HelloService service;
+	
+	@GetMapping("/doA")
+	public String doA() {
+		logger.info("doA....");
+		return "mydoA";
+		
+	}
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)

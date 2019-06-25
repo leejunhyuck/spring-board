@@ -32,20 +32,15 @@ public class HelloServiceTests {
 		@Test
 		public void testExist() {
 			log.info(service);
-			assertNotNull(service);
+			assertNotNull(service);		
 			
-			
-		}
-		
+		}		
 		
 		@Test
 		public void testExist2() {
-			restaurant.order();
+			restaurant.order();			
 			
-			
-		}
-		
-		
+		}		
 	
 		
 		
