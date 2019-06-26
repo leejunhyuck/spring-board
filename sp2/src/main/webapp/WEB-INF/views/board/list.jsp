@@ -40,7 +40,7 @@
 			 </table>
 			 
 			 
-			 <ul class="pagination">
+	<ul class="pagination">
 	<c:if test="${pm.prev}">		 
     <li class="page-item"><a class="page-link" href='${pm.getLink("/board/list", pm.getStart() -1)}'>Previous</a></li>
     </c:if>
@@ -53,6 +53,7 @@
     <li class="page-item"><a class="page-link" href='${pm.getLink("/board/list", pm.getEnd() +1)}'>Next</a></li>
     </c:if>
   </ul>
+  
                  
               </div>
           </div>  
