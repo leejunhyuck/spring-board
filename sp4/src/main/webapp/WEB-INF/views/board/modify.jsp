@@ -92,7 +92,7 @@
  
 	$('.btn-secondary').on("click",function(){
 		  
-		  e.preventDefault;
+		  e.preventDefault();
 		  
 		  var formObj = $("#form1");
 		  formObj.find("input[name='bno']").remove();
