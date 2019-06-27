@@ -90,7 +90,16 @@
 	  .submit();
   });
  
- 
+	$('.btn-secondary').on("click",function(){
+		  
+		  e.preventDefault;
+		  
+		  var formObj = $("#form1");
+		  formObj.find("input[name='bno']").remove();
+		  formObj.attr("action","/board/list")
+		  .attr("method","get")
+		  .submit();
+	  });
  
  
  
