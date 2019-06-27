@@ -1,5 +1,6 @@
 package org.zerock.mapper;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,30 @@ public class BoardMapperTests {
 
 	@Autowired
 	BoardMapper mapper;
+	
+	
+	@Test
+	public void testMap() {
+		String type = "TCW";
+		String keyword ="홍길동";
+
+		String[] arr = type.split("");
+		log.info(Arrays.toString(arr));
+	
+		
+		if(type==null||type.trim().length()==0) {
+			//return null;
+			
+			
+		}
+		
+		Map<String,String> map = new HashMap<>();
+		for(String string : arr) {
+			map.put(string, keyword);
+		}
+		log.info(map);
+	}
+	
 	
 	@Test
 	public void boardtest() {
@@ -74,6 +99,9 @@ public class BoardMapperTests {
 		
 		PageMaker pm = new PageMaker(cri,97);
 		
+		cri.setType("T");
+		cri.setKeyword("샘플");
+		mapper.selectPage(cri).forEach( vo -> log.info(vo)); 
 		log.info(pm);
 	}
 	
