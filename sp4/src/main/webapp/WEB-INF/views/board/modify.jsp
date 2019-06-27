@@ -36,6 +36,11 @@
                     value='<c:out value="${vo.writer}"/>' >
                   </div>
               
+            	<input type="hidden" name="page" value="${cri.page}">
+        		<input type="hidden" name="amount" value="${cri.amount}">
+	        	<input type="hidden" name="bno" value="${cri.bno}">
+	              
+              
                 </form>
                 
                 

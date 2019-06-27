@@ -16,5 +16,7 @@ public interface GenericService<VO, K> {
 	
 	public List<VO> getList(Criteria cri);
 	
+	public int getListCount(Criteria cri);
+	
 }
 

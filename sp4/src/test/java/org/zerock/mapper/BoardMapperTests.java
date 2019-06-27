@@ -1,5 +1,8 @@
 package org.zerock.mapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,16 +57,16 @@ public class BoardMapperTests {
 		
 	}
 	
-	@Test
-	public void testPaging() {
-		
-		Criteria cri = new Criteria();
-		
-		mapper.selectPage(cri).forEach( vo -> log.info(vo)); {
-			
-		}
-		
-	}
+//	@Test
+//	public void testPaging() {
+//		
+//		Criteria cri = new Criteria();
+//		
+//		mapper.selectPage(cri).forEach( vo -> log.info(vo)); {
+//			
+//		}
+//		
+//	}
 	
 	@Test
 	public void testPageMaker() {
@@ -72,6 +75,17 @@ public class BoardMapperTests {
 		PageMaker pm = new PageMaker(cri,97);
 		
 		log.info(pm);
+	}
+	
+	
+	@Test
+	public void testSerach() {
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("T", "샘플");
+		
+		mapper.search(map);
+		
 	}
 	
 }

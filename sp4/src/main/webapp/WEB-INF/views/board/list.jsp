@@ -32,7 +32,7 @@
 			   <c:forEach items="${list}" var="vo">
 			   <tr>
 			     <td><c:out value="${vo.bno}"/></td>
-			     <td><a href=''><c:out value="${vo.title}"/></a></td>
+			     <td><a class="view" href='${vo.bno}'><c:out value="${vo.title}"/></a></td>
 			     <td><c:out value="${vo.writer}"/></td>
 			     <td><c:out value="${vo.regdate}"/></td>
 			   </tr>
@@ -66,8 +66,6 @@
          <form id="actionForm" action="/board/list" method="get">
          	<input type="hidden" name="page" value="${cri.page}">
         	<input type="hidden" name="amount" value="${cri.amount}">
-        
-        
         </form>
  
  <script>
@@ -96,7 +94,14 @@
 	 
  })
  
- 
+ $(".view").on("click",function(e){
+	 e.preventDefault();
+	 var  targetBno =$(this).attr("href");
+	 actionForm.attr("action","/board/read");
+	 actionForm.append("<input type='hidden' name='bno' value="+targetBno+">")
+	 actionForm.submit();
+	 
+ })
  
  
  

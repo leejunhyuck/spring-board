@@ -38,4 +38,21 @@ where bno =#{bno}
 
 </update>
 
+<select id="selectPageCount" resultType="int">
+
+SELECT count(bno) from tbl_board
+where bno>0
+
+</select>
+
+<select id="search" resultType="BoardVO">
+
+select * from tbl_board
+order by bno desc limit 0,20
+
+
+</select>
+
+
+
 </mapper>

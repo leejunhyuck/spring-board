@@ -39,16 +39,26 @@ public class BoardServiceimpl implements BoardService {
 		return mapper.delete(key);
 	}
 
-	@Override
-	public List<BoardVO> listAll() {
-		// TODO Auto-generated method stub
-		return mapper.selectAll();
-	}
+	
 
 	@Override
 	public List<BoardVO> getList(Criteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.selectPage(cri);
 	}
+
+	@Override
+	public int getListCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.selectPageCount(cri);
+	}
+
+	@Override
+	public List<BoardVO> listAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

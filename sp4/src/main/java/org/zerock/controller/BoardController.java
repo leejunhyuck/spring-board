@@ -37,6 +37,7 @@ public class BoardController {
 		
 		
 		
+		
 	}
 	
 	@PostMapping("/remove")
@@ -45,8 +46,9 @@ public class BoardController {
 		int count = service.remove(cri.getBno());
 		rttr.addFlashAttribute("result","success");
 		
+		cri.setPage(1);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list"+cri.getLink();
 		
 	}
 	
@@ -63,7 +65,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public void listPage(@ModelAttribute("cri")Criteria cri, Model model) {
 		
-		int totalCount = 201;
+		int totalCount = service.getListCount(cri);
 		
 		PageMaker pm  = new PageMaker(cri,totalCount);
 		
@@ -92,13 +94,14 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO vo, RedirectAttributes rttr) {
+	public String modify(BoardVO vo, 
+			@ModelAttribute("cri")Criteria cri,RedirectAttributes rttr) {
 		log.info(vo);
 		service.modify(vo);
 		
 		rttr.addFlashAttribute("result","success");
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list"+cri.getLink();
 	}
 	
 	

@@ -12,7 +12,8 @@ public class Criteria {
 	private Integer bno;
 	private int page;
 	private int amount;
-	 
+	private String type;
+	private String keyword;
 	
 	
 	public Criteria() {
@@ -44,6 +45,16 @@ public class Criteria {
 				.queryParam("page", this.page).queryParam("amount",this.amount);
 		
 		return builder.toUriString();
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	
