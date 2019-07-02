@@ -21,4 +21,15 @@ public interface ReplyMapper {
 	
 	@Delete("delete from tbl_reply where rno=#{rno}")
 	public int delete(@Param("rno") Integer rno);
+	
+	
+	
+	
+	@Insert("insert into tbl_s1 (col1) values (#{str})")
+	public void insert1(@Param("str") String str);
+
+
+	@Insert("insert into tbl_s2 (col1) values (#{str})")
+	public void insert2(@Param("str") String str);
+
 }

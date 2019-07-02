@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.ReplyVO;
+import org.zerock.service.ReplyService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -19,6 +20,18 @@ public class BoardMapperTests {
 
 	@Autowired
 	ReplyMapper mapper;
+	
+	@Autowired
+	ReplyService service;
+	
+	
+	@Test
+	public void tesTx() {
+		
+		//service.addTest("hong gil dong");
+		service.addTest(
+				"백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화");
+	}
 	
 	private int[] bnoarr= {2041,2040,2037,2035,2033};
 	
