@@ -1,17 +1,14 @@
 package org.zerock.mapper;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageMaker;
+import org.zerock.domain.ReplyVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -21,99 +18,48 @@ import lombok.extern.log4j.Log4j;
 public class BoardMapperTests {
 
 	@Autowired
-	BoardMapper mapper;
+	ReplyMapper mapper;
+	
+	private int[] bnoarr= {2041,2040,2037,2035,2033};
+	
 	
 	
 	@Test
-	public void testMap() {
-		String type = "TCW";
-		String keyword ="홍길동";
+	public void testList() {
+		mapper.list(2041).forEach(vo ->log.info(vo));
+		
+		
+	}
+	
+	
+	@Test
+	public void testList2() {
+		mapper.delete(1102);
+		
+		
+	}
+	
+	
+	@Test
+	public void testInsert() {
+		
+		IntStream.rangeClosed(1,10).forEach(i ->{
+			
+			ReplyVO vo = new ReplyVO();
+			
+			vo.setBno(bnoarr[i%5]);
+			vo.setReply("댓글테스트"+i);
+			vo.setReplyer("replyer"+i);
+			
+			mapper.insert(vo);
+		});
+		
+		
+		
+		
+	}
 
-		String[] arr = type.split("");
-		log.info(Arrays.toString(arr));
-	
-		
-		if(type==null||type.trim().length()==0) {
-			//return null;
-			
-			
-		}
-		
-		Map<String,String> map = new HashMap<>();
-		for(String string : arr) {
-			map.put(string, keyword);
-		}
-		log.info(map);
-	}
 	
 	
-	@Test
-	public void boardtest() {
-		BoardVO vo = new BoardVO();
-		vo.setTitle("너구리");
-		vo.setContent("몰라");
-		vo.setWriter("user01");
-		mapper.insert(vo);
-	}
-	
-	@Test
-	public void testSelect() {
-		BoardVO vo = mapper.select(5);
-		log.info(vo);
-	}
-	
-	@Test
-	public void testupdate() {
-		BoardVO vo = mapper.select(5);
-		vo.setTitle("수정된 제목");
-		vo.setContent("수정된 내용");
-		
-		int count = mapper.update(vo);
-		
-		log.info("update count :" + count);
-	}
-	
-	@Test
-	public void testDelete() {
-		
-		int count = mapper.delete(5);
-		
-		log.info("delete count : "+count);
-		
-	}
-	
-//	@Test
-//	public void testPaging() {
-//		
-//		Criteria cri = new Criteria();
-//		
-//		mapper.selectPage(cri).forEach( vo -> log.info(vo)); {
-//			
-//		}
-//		
-//	}
-	
-	@Test
-	public void testPageMaker() {
-		Criteria cri = new Criteria();
-		
-		PageMaker pm = new PageMaker(cri,97);
-		
-		cri.setType("T");
-		cri.setKeyword("샘플");
-		mapper.selectPage(cri).forEach( vo -> log.info(vo)); 
-		log.info(pm);
-	}
-	
-	
-	@Test
-	public void testSerach() {
-		Map<String, String> map = new HashMap<>();
-		
-		map.put("T", "샘플");
-		
-		mapper.search(map);
-		
-	}
 	
 }

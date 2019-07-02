@@ -1,0 +1,71 @@
+var replyService = (function (){
+
+    const host ="/replies/"
+
+    var idx = 0;
+
+    function conuntUp() {
+        return ++idx;
+    }
+
+    function addReply(obj, callback) {
+        $.ajax({
+            type : "post",
+            url : host+"new",
+            data : JSON.stringify(obj),
+            contentType : "application/json;charset=UTF-8",
+            success : function () {
+                if(callback){
+                    callback();
+                }
+            }
+        })
+    }
+
+    function getList(bno, callback) {
+        $.getJSON(host+bno+"/1.json",
+            null,
+            function(arr) {
+                if(callback){
+                    callback(arr)
+                }
+            })
+    }
+    
+
+    function get(rno, callback) {
+        $.getJSON(host+"/"+rno+".json",
+            null,
+            function(arr) {
+                if(callback){
+                    callback(arr)
+                }
+            })
+    }
+    
+    
+    function removeReply(rno, callback) {
+    	  $.ajax({
+              type : "delete",
+              url : host+rno,
+              success : function () {
+                  if(callback){
+                      callback();
+                  }
+              }
+          })
+    	
+    	
+    }
+    
+    
+
+    return {
+        getList: getList,
+        countUp:conuntUp,
+        addReply:addReply,
+        get:get,
+        removeReply:removeReply
+    }
+
+})();
