@@ -6,19 +6,11 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml
+		/WEB-INF/spring/security-context.xml
+		</param-value>
 	</context-param>
-	<multipart-config>
-
-<location>C:\\upload\\temp</location>
-
-<max-file-size>20971520</max-file-size> <!--1MB * 20 -->
-
-<max-request-size>41943040</max-request-size><!-- 40MB -->
-
-<file-size-threshold>20971520</file-size-threshold> <!-- 20MB -->
-
-</multipart-config>
+	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -39,38 +31,22 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<filter>  
 
-    <filter-name>encodingFilter</filter-name>  
+<filter>
 
-    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+<filter-name>springSecurityFilterChain</filter-name>
 
-    <init-param>  
+<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 
-       <param-name>encoding</param-name>  
+</filter>
 
-       <param-value>UTF-8</param-value>  
+<filter-mapping>
 
-    </init-param>  
+<filter-name>springSecurityFilterChain</filter-name>
 
-    <init-param>  
-
-       <param-name>forceEncoding</param-name>  
-
-       <param-value>true</param-value>  
-
-    </init-param>  
-
-</filter>  
-
-<filter-mapping>  
-
-    <filter-name>encodingFilter</filter-name>  
-
-    <url-pattern>/*</url-pattern>  
+<url-pattern>/*</url-pattern>
 
 </filter-mapping>
-
 
 
 </web-app>

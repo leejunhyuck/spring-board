@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
@@ -10,18 +10,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-
-
-
-	<!-- <bean id="chef" class="org.zerock.service.Chef"></bean> <bean id="restaurant" 
-		class="org.zerock.service.Restaurant"> <property name="chef" ref="chef"> 
-		</property> </bean> -->
-
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="jdbcUrl"
-			value="jdbc:mysql://192.168.41.10:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+			value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
 		<property name="username" value="zerock"></property>
 		<property name="password" value="zerock"></property>
 	</bean>
@@ -31,40 +27,28 @@
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 
-
-
-	<bean id="transactionManager"
-
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-
-		<property name="dataSource" ref="dataSource"></property>
-
-	</bean>
-
-	<tx:annotation-driven />
-
-
-
 	<bean id="sqlSessionFactory"
-
 		class="org.mybatis.spring.SqlSessionFactoryBean">
-
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="typeAliasesPackage" value="org.zerock.domain"></property>
 	</bean>
 
-
-
-	<mybatis-spring:scan
-		base-package="org.zerock.mapper" />
+ <bean id="transactionManager"
+    class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"></property>
+  </bean>	
+	
+	<tx:annotation-driven/>
 
 	<context:component-scan
 		base-package="org.zerock.service">
 	</context:component-scan>
-
 <!-- 	<context:component-scan
-		base-package="org.zerock.aop"></context:component-scan>
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+		base-package="org.zerock.aop">
+	</context:component-scan> -->
 
-
+	<mybatis-spring:scan base-package="org.zerock.mapper"/>
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+		
 </beans>
