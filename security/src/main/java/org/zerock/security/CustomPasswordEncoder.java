@@ -10,9 +10,7 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 	@Override
 	public String encode(CharSequence rawPassword) {
 		
-		
-		log.info("encode: "+rawPassword);
-		
+		log.info("encode : " + rawPassword);
 		
 		return rawPassword.toString();
 	}
@@ -20,9 +18,8 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 	@Override
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
 		
-		log.info("RAW: "+rawPassword);
-		log.info("EN :"+encodedPassword);
-		
+		log.info("RAW : " + rawPassword);
+		log.info("EN : " + encodedPassword);
 		return true;
 	}
 

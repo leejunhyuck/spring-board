@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2><c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
+<h1>ACCESS ERROR</h1>
 
-<h2><c:out value="${msg}"/></h2>
+<h2>BASIC: <c:out value="${SPRING_SECURITY_403_EXCEPTION.getMessage()}"/></h2>
+ 
+<h2>CUSTOM: <c:out value="${msg}"/></h2>
 
-<h1>     Access  Error</h1>
 </body>
 </html>
