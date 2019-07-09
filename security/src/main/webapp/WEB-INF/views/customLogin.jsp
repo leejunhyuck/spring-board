@@ -23,6 +23,9 @@
     <input type='password' name='password' value='admin'>
   </div>
   <div>
+    <input type='checkbox' name='remember-me'>
+  </div>
+  <div>
     <input type='submit'>
   </div>
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

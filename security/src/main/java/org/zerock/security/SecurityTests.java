@@ -32,7 +32,7 @@ public class SecurityTests {
 		String sql="insert into tbl_member_auth(userid,auth) values (?,?)";
 		
 		
-		for(int i=0;i<=100;i++) {
+		for(int i=80;i<=100;i++) {
 			
 			try(Connection con = ds.getConnection();
 				PreparedStatement pst=con.prepareStatement(sql);
@@ -48,11 +48,11 @@ public class SecurityTests {
 					pst.setString(2, "ROLE_USER");
 				}else if(i<90) {
 					pst.setString(1, "manager"+i);
-					pst.setString(2, "ROLE_MEMBER");
+					pst.setString(2, "ROLE_USER");
 					
 				}else {
 					pst.setString(1, "admin"+i);
-					pst.setString(2, "ROLE_ADMIN");
+					pst.setString(2, "ROLE_USER");
 					
 				}
 				

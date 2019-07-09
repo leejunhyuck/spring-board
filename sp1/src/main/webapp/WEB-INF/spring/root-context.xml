@@ -35,7 +35,6 @@
 		<property name="typeAliasesPackage" value="org.zerock.domain"></property>
 	</bean>
 	
-	
 
 	<mybatis-spring:scan base-package="org.zerock.mapper"/>
 
